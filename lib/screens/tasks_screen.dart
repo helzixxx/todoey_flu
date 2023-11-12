@@ -5,6 +5,50 @@ import '../widgets/tasks_list.dart';
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
 
+  Widget buildBottomSheet(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+      height: 400,
+      child: Column(
+        children: [
+          const Text(
+            'Add task',
+            style: TextStyle(color: Color(0xFF63C9FE), fontSize: 30.0),
+          ),
+          const SizedBox(
+            width: 300.0,
+            height: 50,
+            child: TextField(
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF63C9FE), width: 2.0),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 30.0,
+          ),
+          SizedBox(
+            width: 300.0,
+            height: 50,
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'Add',
+                style: TextStyle(color: Colors.white, fontSize: 20.0),
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: Color(0xFF63C9FE),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<String> items = [
@@ -12,7 +56,6 @@ class TasksScreen extends StatelessWidget {
       'Buy eggs',
       'Buy coffee',
     ];
-
     return Scaffold(
       backgroundColor: const Color(0xFF63C9FE),
       body: Column(
@@ -60,7 +103,9 @@ class TasksScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: buildBottomSheet);
+        },
         backgroundColor: const Color(0xFF63C9FE),
         child: const Icon(Icons.add),
       ),
